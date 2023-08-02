@@ -1,13 +1,15 @@
-const passport = require('passport');
-module.exports = app =>{
 
-app.get('/auth/google',passport.authenticate('google',{
+const passport = require('passport');
+import { authenticate } from 'passport';
+export default app =>{
+
+app.get('/auth/google',authenticate('google',{
     scope:['profile','email']
 
 }));
 app.get(
 '/auth/google/callback',
-passport.authenticate('google'),
+    authenticate('google'),
 (req,res) => {
     res.redirect('/surveys');
 }
